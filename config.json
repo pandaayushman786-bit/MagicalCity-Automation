@@ -1,0 +1,11 @@
+{
+  "project_name": "MagicalCity-Automation",
+  "youtube_channel": "Magical City",
+  "story_title": "The Crown of Eternity",
+  "hero_name": "Elian Ashborne",
+  "budget_inr": 0,
+  "output_folder": "output",
+  "require_approval_before_upload": true,
+  "auto_upload": false,
+  "generate_scene_plan": true
+}
