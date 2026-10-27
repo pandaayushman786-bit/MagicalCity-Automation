@@ -4,31 +4,13 @@ import re
 OUTPUT_DIR = Path("output")
 OUTPUT_DIR.mkdir(exist_ok=True)
 
+STORY_TITLE = "The Crown of Eternity"
+HERO = "Elian Ashborne"
+
 
 def split_story(story):
-    paragraphs = [
-        p.strip()
-        for p in re.split(r"\n\s*\n", story.strip())
-        if p.strip()
-    ]
+    return [line.strip() for line in story.splitlines() if line.strip()]
 
-    scenes = []
-    for paragraph in paragraphs:
-        # Split very long paragraphs into manageable chunks.
-        sentences = re.split(r"(?<=[.!?])\s+", paragraph)
-        current = ""
-
-        for sentence in sentences:
-            if len(current) + len(sentence) > 450 and current:
-                scenes.append(current.strip())
-                current = sentence
-            else:
-                current = f"{current} {sentence}".strip()
-
-        if current:
-            scenes.append(current.strip())
-
-    return scenes
 
 
 def main():
@@ -64,8 +46,8 @@ def main():
         for number, scene in enumerate(scenes, start=1):
             file.write(f"## Scene {number}\n\n")
             file.write(f"**Story action:** {scene}\n\n")
-            file.write("**Visual prompt:** To be prepared.\n\n")
-            file.write("**Dialogue / narration:** To be prepared.\n\n")
+            file.write(f"**Visual prompt:** Cinematic realistic Hollywood fantasy scene from {STORY_TITLE}, featuring {HERO}. Action: {scene} Ancient magical kingdom, dramatic storm lighting, detailed environment, epic fantasy film quality.\n\n")
+            file.write(f"**Dialogue / narration:** {HERO}: {scene}\n\n")
             file.write("---\n\n")
 
     print(f"\nSuccess! Created {len(scenes)} scenes.")
